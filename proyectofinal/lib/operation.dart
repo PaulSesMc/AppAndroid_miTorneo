@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:async';
-import 'team.dart';
+import 'package:proyectofinal/equipos/equipos.dart';
+
+import 'equipos/team.dart';
 import 'package:http/http.dart' as http;
 
 Future<List<Team>> fetchTeam() async {
@@ -19,22 +21,21 @@ List<Team> decodeTeam(String responseBody) {
   return parsed.map<Team>((json) => Team.fromMap(json)).toList();
 }
 
-Future<Team> sendTeam(
-    String title, int id, String imageurl, int quantity) async {
+Future<Team> sendTeam(String nombre, String logo) async {
   final http.Response response = await http.post(
-    Uri.parse('https://mitorneo.glitch.me/mostrarfruits'),
+    Uri.parse('https://mitorneo.glitch.me/insertarequipo'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
-      'title': title,
-      'imageurl': imageurl,
-      'quantity': quantity.toString()
+      'nombre': nombre,
+      'logo': logo,
     }),
   );
   if (response.statusCode == 201) {
     return Team.fromJson(json.decode(response.body));
   } else {
+    print(response.toString());
     throw Exception('Failed to load');
   }
 }

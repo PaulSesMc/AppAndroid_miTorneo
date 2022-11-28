@@ -1,5 +1,5 @@
 class Team {
-  final int id;
+  final int id_equipo;
   final String nombre;
   final int puntos_favor;
   final int puntos_contra;
@@ -9,7 +9,7 @@ class Team {
   final String logo;
 
   Team(
-      this.id,
+      this.id_equipo,
       this.nombre,
       this.puntos_favor,
       this.puntos_contra,

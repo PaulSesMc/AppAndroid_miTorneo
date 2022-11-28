@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:proyectofinal/operation.dart';
+import 'registrarEquipo.dart';
+import 'teamInfo.dart';
 
 import 'team.dart';
 
@@ -16,9 +19,15 @@ class TeamItem extends StatelessWidget {
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Image.network(
-                  this.item.logo,
-                  width: 200,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => TeamInfo(item: item)));
+                  },
+                  child: Image.network(
+                    this.item.logo,
+                    width: 200,
+                  ),
                 ),
                 Expanded(
                     child: Container(
@@ -28,8 +37,9 @@ class TeamItem extends StatelessWidget {
                           children: <Widget>[
                             Text(this.item.nombre,
                                 style: TextStyle(fontWeight: FontWeight.bold)),
-                            Text("id:${this.item.id}"),
-                            Text("quantity:${this.item.juegos_ganados}"),
+                            Text("id:${this.item.id_equipo}"),
+                            Text(
+                                "Record:${this.item.juegos_ganados} - ${this.item.juegos_perdidos}"),
                           ],
                         )))
               ]),

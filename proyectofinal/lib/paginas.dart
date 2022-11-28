@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:proyectofinal/operation.dart';
-import 'equipos.dart';
+import 'equipos/equipos.dart';
 import 'home.dart';
 
 class Paginas extends StatelessWidget {

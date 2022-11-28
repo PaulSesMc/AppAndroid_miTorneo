@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:proyectofinal/registrarEquipo.dart';
+import 'equipos/registrarEquipo.dart';
 import 'operation.dart';
-import 'registrarEquipo.dart';
+import 'equipos/registrarEquipo.dart';
 
 class home extends StatefulWidget {
   @override

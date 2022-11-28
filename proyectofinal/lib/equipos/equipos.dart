@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'team.dart';
 import 'teamList.dart';
-import 'operation.dart';
+import '../operation.dart';
 
 class Equipos extends StatelessWidget {
   final Future<List<Team>> products;
