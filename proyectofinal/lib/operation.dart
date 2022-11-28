@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 Future<List<Team>> fetchTeam() async {
   final response =
-      await http.get(Uri.parse('https://mitorneo.glitch.me/mostrarfruits'));
+      await http.get(Uri.parse('https://mitorneo.glitch.me/mostrarequipos'));
   if (response.statusCode == 200) {
     return decodeTeam(response.body);
   } else {
@@ -19,7 +19,7 @@ List<Team> decodeTeam(String responseBody) {
   return parsed.map<Team>((json) => Team.fromMap(json)).toList();
 }
 
-/*Future<Team> sendTeam(
+Future<Team> sendTeam(
     String title, int id, String imageurl, int quantity) async {
   final http.Response response = await http.post(
     Uri.parse('https://mitorneo.glitch.me/mostrarfruits'),
@@ -33,13 +33,13 @@ List<Team> decodeTeam(String responseBody) {
     }),
   );
   if (response.statusCode == 201) {
-    return Fruit.fromJson(json.decode(response.body));
+    return Team.fromJson(json.decode(response.body));
   } else {
     throw Exception('Failed to load');
   }
 }
 
-Future<Fruit> deleteFruit(int id) async {
+/*Future<Fruit> deleteFruit(int id) async {
   final http.Response response = await http.delete(
     Uri.parse('url/$id'),
     headers: <String, String>{
