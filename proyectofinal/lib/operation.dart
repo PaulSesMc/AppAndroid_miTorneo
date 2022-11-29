@@ -35,7 +35,6 @@ Future<Team> sendTeam(String nombre, String logo) async {
   if (response.statusCode == 201) {
     return Team.fromJson(json.decode(response.body));
   } else {
-    print(response.toString());
     throw Exception('Failed to load');
   }
 }

@@ -17,10 +17,10 @@ class Paginas extends StatelessWidget {
               foregroundColor: Color.fromARGB(255, 235, 133, 0),
               backgroundColor: Colors.white,
               title: Image.asset('assets/images/logo3.png',
-                  height: 80, width: 80)),
+                  height: 75, width: 75)),
           bottomNavigationBar: menu(),
           body: TabBarView(
-            children: [home(), Equipos(products: fetchTeam())],
+            children: [home(), Equipos()],
           ),
         ),
       ),

@@ -4,9 +4,7 @@ import 'teamList.dart';
 import '../operation.dart';
 
 class Equipos extends StatelessWidget {
-  final Future<List<Team>> products;
-
-  Equipos({required this.products});
+  final Future<List<Team>> products = fetchTeam();
 
   @override
   Widget build(BuildContext context) {

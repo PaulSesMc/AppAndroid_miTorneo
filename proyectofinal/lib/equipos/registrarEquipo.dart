@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:proyectofinal/equipos/equipos.dart';
 import 'package:proyectofinal/operation.dart';
+import 'package:proyectofinal/paginas.dart';
 
 class RegistrarEquipo extends StatelessWidget {
   const RegistrarEquipo({super.key});
@@ -85,6 +87,11 @@ class _NuevoEquipoState extends State<NuevoEquipo> {
                       if (_formKey.currentState!.validate()) {
                         sendTeam(nombre, logo);
                         print(nombre);
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => Paginas()),
+                          (Route<dynamic> route) => false,
+                        );
                       } else {}
                     },
                     child: const Text('Submit'),
