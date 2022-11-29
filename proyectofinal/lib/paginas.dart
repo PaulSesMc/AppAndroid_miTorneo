@@ -1,23 +1,39 @@
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:proyectofinal/operation.dart';
 import 'equipos/equipos.dart';
 import 'home.dart';
+
+final user = FirebaseAuth.instance.currentUser!;
 
 class Paginas extends StatelessWidget {
   @override
   int _selectedIndex = 0;
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: DefaultTabController(
         length: 4,
         child: Scaffold(
           appBar: AppBar(
-              centerTitle: true,
-              foregroundColor: Color.fromARGB(255, 235, 133, 0),
-              backgroundColor: Colors.white,
-              title: Image.asset('assets/images/logo3.png',
-                  height: 75, width: 75)),
+            toolbarHeight: 70,
+            centerTitle: true,
+            foregroundColor: Color.fromARGB(255, 235, 133, 0),
+            backgroundColor: Colors.white,
+            title:
+                Image.asset('assets/images/logo3.png', height: 75, width: 75),
+            actions: <Widget>[
+              IconButton(
+                  onPressed: () {
+                    showAlertDialog(context);
+                  },
+                  icon: Icon(
+                    Icons.person,
+                    size: 30,
+                  ))
+            ],
+          ),
           bottomNavigationBar: menu(),
           body: TabBarView(
             children: [home(), Equipos()],
@@ -57,4 +73,37 @@ class Paginas extends StatelessWidget {
       ),
     );
   }
+}
+
+showAlertDialog(BuildContext context) {
+  // set up the buttons
+  Widget cancelButton = TextButton(
+    child: Text("Cancelar"),
+    onPressed: () {
+      Navigator.of(context).pop();
+    },
+  );
+  Widget continueButton = TextButton(
+    child: Text("Cerrar sesión"),
+    onPressed: () {
+      Navigator.of(context).pop();
+      FirebaseAuth.instance.signOut();
+    },
+  );
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("${user.email}"),
+    content: Text("Deseas cerrar tu sesión?"),
+    actions: [
+      cancelButton,
+      continueButton,
+    ],
+  );
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }
