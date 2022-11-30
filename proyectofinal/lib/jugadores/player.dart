@@ -22,7 +22,7 @@ class Player {
         json['puntos'],
         json['asistencias'],
         json['rebotes'],
-        json['juegos_jugados']);
+        json['j_jugados']);
   }
 
   factory Player.fromJson(Map<String, dynamic> json) {
@@ -35,6 +35,6 @@ class Player {
         json['puntos'],
         json['asistencias'],
         json['rebotes'],
-        json['juegos_jugados']);
+        json['j_jugados']);
   }
 }

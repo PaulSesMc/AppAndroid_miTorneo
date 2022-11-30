@@ -61,7 +61,7 @@ List<Partido> decodePartido(String responseBody) {
 //--------------------------------------------------------------------------------Jugadores----------------------------------------------------------------//
 Future<List<Player>> fetchJugadorEquipo(int id_equipo) async {
   final response = await http
-      .get(Uri.parse('https://mitorneo.glitch.me/jugadores/:${id_equipo}'));
+      .get(Uri.parse('https://mitorneo.glitch.me/jugadores/${id_equipo}'));
   if (response.statusCode == 200) {
     return decodePlayer(response.body);
   } else {

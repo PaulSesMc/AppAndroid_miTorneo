@@ -15,7 +15,7 @@ class Paginas extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
-        length: 4,
+        length: 3,
         child: Scaffold(
           appBar: AppBar(
             toolbarHeight: 70,
@@ -66,10 +66,10 @@ class Paginas extends StatelessWidget {
             text: "Partidos",
             icon: Icon(Icons.sports_basketball),
           ),
-          Tab(
+          /*Tab(
             text: "Estadisticas",
             icon: Icon(Icons.bar_chart),
-          ),
+          ),*/
         ],
       ),
     );
