@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:proyectofinal/operation.dart';
 import 'equipos/equipos.dart';
 import 'home.dart';
+import 'partidos/partidos.dart';
 
 final user = FirebaseAuth.instance.currentUser!;
 
@@ -36,7 +37,7 @@ class Paginas extends StatelessWidget {
           ),
           bottomNavigationBar: menu(),
           body: TabBarView(
-            children: [home(), Equipos()],
+            children: [home(), Equipos(), Partidos()],
           ),
         ),
       ),
@@ -59,15 +60,15 @@ class Paginas extends StatelessWidget {
           ),
           Tab(
             text: "Equipos",
+            icon: Icon(Icons.group),
+          ),
+          Tab(
+            text: "Partidos",
             icon: Icon(Icons.sports_basketball),
           ),
           Tab(
-            text: "Estadísticas",
+            text: "Estadisticas",
             icon: Icon(Icons.bar_chart),
-          ),
-          Tab(
-            text: "Opiniones",
-            icon: Icon(Icons.star),
           ),
         ],
       ),
