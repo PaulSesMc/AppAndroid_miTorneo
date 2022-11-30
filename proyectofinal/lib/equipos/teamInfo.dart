@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'registrarEquipo.dart';
 import 'team.dart';
+import 'package:proyectofinal/jugadores/player.dart';
+import 'package:proyectofinal/jugadores/playerItem.dart';
+import 'package:proyectofinal/jugadores/playerList.dart';
+import 'package:proyectofinal/operation.dart';
+
+
 
 class TeamInfo extends StatelessWidget {
   const TeamInfo({super.key, required this.item});
@@ -8,7 +14,9 @@ class TeamInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future<List<Player>> list = fetchJugadorEquipo(item.id_equipo);
     String _title = item.nombre.toUpperCase();
+    Key k = new Key("");
     return MaterialApp(
         title: _title,
         home: Scaffold(
@@ -60,6 +68,20 @@ class TeamInfo extends StatelessWidget {
                               ),
                               const SizedBox(width: 8),
                             ],
+                          ),
+                          
+                          SingleChildScrollView(
+                            child: 
+                              FutureBuilder<List<Player>>(
+                            future: list,
+                            builder: (context, snapshot) {
+                            if (snapshot.hasError) print(snapshot.error);
+                              return snapshot.hasData
+                                ? playerList(items: snapshot.data!, key: k)
+                                  : const Center(child: CircularProgressIndicator());
+                                },
+                          ),
+                            
                           ),
                         ],
                       ),
