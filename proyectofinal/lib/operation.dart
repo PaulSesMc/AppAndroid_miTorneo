@@ -75,7 +75,26 @@ List<Player> decodePlayer(String responseBody) {
   return parsed.map<Player>((json) => Player.fromMap(json)).toList();
 }
 
-
+Future<Player> sendJugador(
+    String nombre, String numero, String edad, String equipo) async {
+  final http.Response response = await http.post(
+    Uri.parse('https://mitorneo.glitch.me/insertarjugador'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'nombre': nombre,
+      'numero': numero,
+      'edad': edad,
+      'equipo': equipo
+    }),
+  );
+  if (response.statusCode == 201) {
+    return Player.fromJson(json.decode(response.body));
+  } else {
+    throw Exception('Failed to load');
+  }
+}
 
 /*Future<Fruit> deleteFruit(int id) async {
   final http.Response response = await http.delete(
