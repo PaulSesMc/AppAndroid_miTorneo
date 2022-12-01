@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_sms/flutter_sms.dart';
 
 class Contacto extends StatefulWidget {
   @override
@@ -22,22 +23,33 @@ class _MyAppState extends State<Contacto> {
     }
   }
 
-  _textMe() async {
-    // Android
-    const uri = 'sms:+39 348 060 888?body=hello%20there';
-    if (await canLaunch(uri)) {
-      await launch(uri);
+
+  _launchWhatsapp() async {
+    var whatsapp = "+91XXXXXXXXXX";
+    var whatsappAndroid =Uri.parse("whatsapp://send?phone=$whatsapp&text=hello");
+    if (await canLaunchUrl(whatsappAndroid)) {
+        await launchUrl(whatsappAndroid);
     } else {
-        throw 'Could not launch $uri';
-      }
+        ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("WhatsApp is not installed on the device"),
+        ),
+      );
     }
-  
+}
+
+
+  Future<void> _launchUrl() async {
+    var _url = Uri.parse("sms:966738292?body=hello%20there");
+    if (!await launchUrl(_url)) {
+      throw 'Could not launch $_url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
-            
             body: Container(
                 margin: EdgeInsets.all(20),
                 alignment: Alignment.center,
@@ -49,7 +61,6 @@ class _MyAppState extends State<Contacto> {
                         style: TextStyle(fontSize: 30),
                         textAlign: TextAlign.center,
                       ),
-                      
                       const Text(
                         '\nTu opinión es muy importante para nosotros. Si tienes algún comentario o sugerencia ponte en contacto con nosotros:\n',
                         //style: TextStyle(fontSize: 20),
@@ -66,8 +77,11 @@ class _MyAppState extends State<Contacto> {
                                     onPrimary: Colors.white,
                                     onSurface: Colors.grey,
                                   ),
-                                  onPressed: _textMe,
-                                  child: const Text('SMS',style: TextStyle(fontSize: 20.0),),
+                                  onPressed: _launchUrl,
+                                  child: const Text(
+                                    'SMS',
+                                    style: TextStyle(fontSize: 20.0),
+                                  ),
                                 )
                               ],
                             ),
@@ -86,7 +100,8 @@ class _MyAppState extends State<Contacto> {
                                   onPressed: () {
                                     String mensaje = "Hola Mcdonalds";
                                     String destinatario = "+525559175602";
-                                    openwhatsapp(mensaje, destinatario);
+                                    //openwhatsapp(mensaje, destinatario);
+                                    _launchWhatsapp();
                                   },
                                 ),
                               ],
@@ -95,5 +110,3 @@ class _MyAppState extends State<Contacto> {
                     ]))));
   }
 }
-
-
