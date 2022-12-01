@@ -52,6 +52,16 @@ Future<List<Partido>> fetchPartidos() async {
   }
 }
 
+Future<List<Partido>> fetchPartidosEquipo(int id_equipo) async {
+  final response = await http.get(Uri.parse(
+      'https://mitorneo.glitch.me/mostrarpartidosequipo/${id_equipo}'));
+  if (response.statusCode == 200) {
+    return decodePartido(response.body);
+  } else {
+    throw Exception('Unable to fetch data from the REST API');
+  }
+}
+
 List<Partido> decodePartido(String responseBody) {
   final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
   print(parsed);
@@ -77,7 +87,7 @@ List<Player> decodePlayer(String responseBody) {
 
 Future<Player> sendJugador(
     String nombre, String numero, String edad, String equipo) async {
-      print(equipo);
+  print(equipo);
   final http.Response response = await http.post(
     Uri.parse('https://mitorneo.glitch.me/insertarjugador'),
     headers: <String, String>{

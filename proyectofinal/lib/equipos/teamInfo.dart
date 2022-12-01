@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyectofinal/jugadores/jugadores.dart';
+import 'package:proyectofinal/partidos/partidoEquipos.dart';
 import 'registrarEquipo.dart';
 import 'team.dart';
 import 'package:proyectofinal/jugadores/player.dart';
@@ -50,9 +51,9 @@ class TeamInfo extends StatelessWidget {
                                       MainAxisAlignment.spaceAround,
                                   children: [
                                     Text(
-                                        'Puntos por partido: ${item.puntos_favor / item.juegos_jugados}'),
+                                        'PPP: ${item.puntos_favor / item.juegos_jugados}'),
                                     Text(
-                                        'Puntos en contra: ${item.puntos_contra / item.juegos_jugados}')
+                                        'PCPP: ${item.puntos_contra / item.juegos_jugados}')
                                   ]),
                             )
                           ],
@@ -74,6 +75,25 @@ class TeamInfo extends StatelessWidget {
                       builder: (context) => Jugadores(item: item)));
                 }),
               ),
+              Padding(
+                  padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orange,
+                      minimumSize: Size(250, 50),
+                      padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
+                    ),
+                    icon: Icon(Icons.sports_basketball, size: 32),
+                    label: Text(
+                      'Partidos',
+                      style: TextStyle(fontSize: 24),
+                    ),
+                    onPressed: (() {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              PartidosEquipo(id_equipo: item.id_equipo)));
+                    }),
+                  ))
             ])));
   }
 }
