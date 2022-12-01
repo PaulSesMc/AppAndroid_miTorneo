@@ -77,6 +77,7 @@ List<Player> decodePlayer(String responseBody) {
 
 Future<Player> sendJugador(
     String nombre, String numero, String edad, String equipo) async {
+      print(equipo);
   final http.Response response = await http.post(
     Uri.parse('https://mitorneo.glitch.me/insertarjugador'),
     headers: <String, String>{
@@ -92,7 +93,8 @@ Future<Player> sendJugador(
   if (response.statusCode == 201) {
     return Player.fromJson(json.decode(response.body));
   } else {
-    throw Exception('Failed to load');
+    return Player.fromJson(json.decode(response.body));
+    //throw Exception('Failed to load');
   }
 }
 

@@ -95,15 +95,13 @@ class registrarJugador extends StatelessWidget{
                               onPressed: () {
                                 // Validate will return true if the form is valid, or false if
                                 // the form is invalid.
-                                if (_formKey.currentState!.validate()) {
-                                  //(nombre, logo);
-                                  //sendPlayer(nombre, int.parse(numero), int.parse(edad), item.id_equipo);
-                                  print(nombre);
-                                  /*Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => Paginas()),
-                                    (Route<dynamic> route) => false,
-                                  );*/
+                                if (_formKey.currentState!.validate()) { 
+                                  sendJugador(nombre, numero, edad, item.id_equipo.toString());
+                                  Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => Paginas()),
+                          (Route<dynamic> route) => false,
+                        );
                                 } else {}
                               },
                               child: const Text('Submit'),
