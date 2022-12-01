@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'equipos/registrarEquipo.dart';
 import 'operation.dart';
 import 'equipos/registrarEquipo.dart';
+import 'equipos/elegirEquipo.dart';
+
 
 class home extends StatefulWidget {
   @override
@@ -26,7 +28,10 @@ class _homeState extends State<home> {
       const SizedBox(height: 15),
       ElevatedButton(
         style: style,
-        onPressed: () {},
+        onPressed: () {
+           Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => elegirEquipo()));
+        },
         child: const Text('Registrar jugador'),
       ),
     ]));

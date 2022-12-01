@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_sms/flutter_sms.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+import 'package:whatsapp_unilink/whatsapp_unilink.dart';
+
 
 class Contacto extends StatefulWidget {
   @override
@@ -26,8 +29,11 @@ class _MyAppState extends State<Contacto> {
 
   _launchWhatsapp() async {
     var whatsapp = "+91XXXXXXXXXX";
-    var whatsappAndroid =Uri.parse("whatsapp://send?phone=$whatsapp&text=hello");
-    if (await canLaunchUrl(whatsappAndroid)) {
+    var _url =Uri.parse("whatsapp://send?phone=$whatsapp&text=hello");
+    if (!await launchUrl(_url)) {
+      throw 'Could not launch $_url';
+    }
+    /*if (await canLaunchUrl(whatsappAndroid)) {
         await launchUrl(whatsappAndroid);
     } else {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -35,9 +41,17 @@ class _MyAppState extends State<Contacto> {
           content: Text("WhatsApp is not installed on the device"),
         ),
       );
-    }
+    }*/
 }
-
+launchWhatsAppString() async {
+  final link = WhatsAppUnilink(
+    phoneNumber: '+001-(555)1234567',
+    text: "Wuenas joven",
+  );
+  // Convert the WhatsAppUnilink instance to a Uri.
+  // The "launch" method is part of "url_launcher".
+   await launchUrlString('$link'); 
+}
 
   Future<void> _launchUrl() async {
     var _url = Uri.parse("sms:966738292?body=hello%20there");
@@ -101,7 +115,7 @@ class _MyAppState extends State<Contacto> {
                                     String mensaje = "Hola Mcdonalds";
                                     String destinatario = "+525559175602";
                                     //openwhatsapp(mensaje, destinatario);
-                                    _launchWhatsapp();
+                                    launchWhatsAppString();
                                   },
                                 ),
                               ],
