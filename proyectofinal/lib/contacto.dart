@@ -11,13 +11,11 @@ class Contacto extends StatefulWidget {
 }
 
 class _MyAppState extends State<Contacto> {
-  openwhatsapp(String message, String destinatario) async {
-    var whatsapp = destinatario;
+  openwhatsapp() async {
+    //var whatsapp = destinatario;
     var whatsappURl_android =
-        "whatsapp://send?phone=" + whatsapp + "&text=" + message;
-    var whatappURL_ios = "https://wa.me/$whatsapp?text=${Uri.parse(message)}";
-
-    // android , web
+        //"whatsapp://send?phone=" + whatsapp + "&text=" + message;
+        "https://wa.me/1234/?text=Hello%20world";
     if (await canLaunch(whatsappURl_android)) {
       await launch(whatsappURl_android);
     } else {
@@ -29,7 +27,7 @@ class _MyAppState extends State<Contacto> {
 
   _launchWhatsapp() async {
     var whatsapp = "+91XXXXXXXXXX";
-    var _url =Uri.parse("whatsapp://send?phone=$whatsapp&text=hello");
+    var _url =Uri.parse("https://api.whatsapp.com/send?phone=+5255101548");
     if (!await launchUrl(_url)) {
       throw 'Could not launch $_url';
     }
@@ -115,7 +113,7 @@ launchWhatsAppString() async {
                                     String mensaje = "Hola Mcdonalds";
                                     String destinatario = "+525559175602";
                                     //openwhatsapp(mensaje, destinatario);
-                                    launchWhatsAppString();
+                                    openwhatsapp();
                                   },
                                 ),
                               ],
