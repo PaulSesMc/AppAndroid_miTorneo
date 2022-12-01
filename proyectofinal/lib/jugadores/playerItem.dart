@@ -11,6 +11,10 @@ class playerItem extends StatelessWidget {
   final Player item;
 
   Widget build(BuildContext context) {
+    var puntospp = item.puntos / item.juegos_jugados;
+    var asistenciaspp = item.asistencias / item.juegos_jugados;
+    puntospp = double.parse((puntospp).toStringAsFixed(1));
+    asistenciaspp = double.parse((asistenciaspp).toStringAsFixed(1));
     return Container(
         padding: EdgeInsets.all(2),
         height: 140,
@@ -19,16 +23,6 @@ class playerItem extends StatelessWidget {
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                /*GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => TeamInfo(item: item)));
-                  },
-                  child: Image.network(
-                    this.item.logo,
-                    width: 200,
-                  ),
-                ),*/
                 Expanded(
                     child: Container(
                         padding: EdgeInsets.all(5),
@@ -37,10 +31,20 @@ class playerItem extends StatelessWidget {
                           children: <Widget>[
                             Text(this.item.nombre,
                                 style: TextStyle(fontWeight: FontWeight.bold)),
-                            Text("id:${this.item.nombre}"),
-                            Text(
-                                "Numero :${this.item.numero}"),
+                            Text("Numero :${this.item.numero}"),
                             Text("Edad:${this.item.edad}"),
+                          ],
+                        ))),
+                Expanded(
+                    child: Container(
+                        padding: EdgeInsets.all(5),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            /*Text('Estadísticas',
+                                style: TextStyle(fontWeight: FontWeight.bold)),*/
+                            Text("Puntos: ${puntospp}"),
+                            Text("Asistencias: ${asistenciaspp}"),
                           ],
                         )))
               ]),

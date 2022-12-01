@@ -37,7 +37,6 @@ class TeamItem extends StatelessWidget {
                           children: <Widget>[
                             Text(this.item.nombre,
                                 style: TextStyle(fontWeight: FontWeight.bold)),
-                            Text("id:${this.item.id_equipo}"),
                             Text(
                                 "Record:${this.item.juegos_ganados} - ${this.item.juegos_perdidos}"),
                           ],
