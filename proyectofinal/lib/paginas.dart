@@ -2,9 +2,11 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:proyectofinal/operation.dart';
+
 import 'equipos/equipos.dart';
 import 'home.dart';
 import 'partidos/partidos.dart';
+import 'contacto.dart';
 
 final user = FirebaseAuth.instance.currentUser!;
 
@@ -15,7 +17,7 @@ class Paginas extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
-        length: 3,
+        length: 4,
         child: Scaffold(
           appBar: AppBar(
             toolbarHeight: 70,
@@ -37,7 +39,7 @@ class Paginas extends StatelessWidget {
           ),
           bottomNavigationBar: menu(),
           body: TabBarView(
-            children: [home(), Equipos(), Partidos()],
+            children: [home(), Equipos(), Partidos(), Contacto() ],
           ),
         ),
       ),
@@ -70,6 +72,10 @@ class Paginas extends StatelessWidget {
             text: "Estadisticas",
             icon: Icon(Icons.bar_chart),
           ),*/
+          Tab(
+            text: "Contacto",
+            icon: Icon(Icons.contact_support),
+          )
         ],
       ),
     );
